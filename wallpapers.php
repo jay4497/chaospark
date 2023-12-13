@@ -66,7 +66,11 @@ class SetWallPaper
         if($ext_index === false){
             return '';
         }
-        return mb_substr($filename, $ext_index);
+	preg_match('/\.\w+/', mb_substr($filename, $ext_index), $matches);
+        if(empty($matches)) {
+            return '';
+        }
+        return $matches[0];
     }
 
 	/**
